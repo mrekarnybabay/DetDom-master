@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if current_user.is_anonymous %}
+        <a class="regular-button" href="{{ url_for('login') }}">Войти</a>
+    {% else %}
+        <div>
+            <table width="100%" style="margin-top: 15px">
+                <thead class="top-header">
+                <td>Код</td>
+                <td>Наименование</td>
+                <td>Дата</td>
+                </thead>
+                {% for error in errors %}
+                    <tr>
+                        <td class="errorcode">{{ error.code }}</td>
+                        <td>{{ error.name }}</td>
+                        <td> {{ error.date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+{% endblock content %}

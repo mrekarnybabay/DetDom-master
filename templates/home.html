@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    {% if current_user.is_anonymous %}
+        <a class="regular-button" href="{{ url_for('login') }}">Войти</a>
+    {% else %}
+        <div class="top-header">подключен</div>
+        <div class="name-car"> {{ car.name }}</div>
+        {% if is_started %}
+
+            <div id="start-engine" class="start-button">
+                <div style="border-bottom: solid 2px #f2f2f2; margin-bottom: 20px">START</div>
+                <div style="font-size: 0.25em; letter-spacing: 0.2em; position: absolute; top:175px">запук двигателя
+                </div>
+            </div>
+            <!--<button id="targeton">ЗАПУСТИТЬ ЭТУ ХУЕТУ БЛЯТЬ ЗАВОДИИИИИИИИСЬ!</button>-->
+        {% else %}
+            <div id="stop-engine" class="stop-button">
+                <div style="border-bottom: solid 2px #f2f2f2; margin-bottom: 20px">STOP</div>
+                <div style="font-size: 0.25em; letter-spacing: 0.2em; position: absolute; top:175px">остановить
+                    двигатель
+                </div>
+            </div>
+            <!--<button id="targetoff">ВЫРУБИ ЭТО ДЕРЬМООООО!</button>-->
+        {% endif %}
+        <div><br><br><br></div>
+        <div class="top-header">владелец</div>
+        <div class="name-car"> {{ user.name }}</div>
+        <a class="regular-button" id="change-car">Сменить автомобиль</a>
+        <a class="regular-button" href="{{ url_for('logout') }}">Выйти</a>
+    {% endif %}
+{% endblock content %}

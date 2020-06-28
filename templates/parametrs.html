@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if current_user.is_anonymous %}
+        <a class="regular-button" href="{{ url_for('login') }}">Войти</a>
+    {% else %}
+        <div>
+            <table width="100%" style="margin-top: 15px">
+                <thead class="top-header">
+                <td>Параметр</td>
+                <td>Значение</td>
+                </thead>
+                {% for parm in parms %}
+                    <tr class="parmst">
+                        <td>{{ parm.name }}</td>
+                        <td id="idtype1" class="parmvalue">{{ parm.value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+{% endblock content %}
